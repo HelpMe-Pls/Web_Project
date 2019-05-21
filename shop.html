@@ -292,7 +292,8 @@
         function shopFilter(filterStr, searchStr = "") {
           searchStr = searchStr.toLocaleLowerCase();
           filtedData = data.filter(exp => ((filterStr == "" || filterStr == 'undefined') ? true : (exp.Category == filterStr))
-            && (exp.Category.toLocaleLowerCase().includes(searchStr) || exp.NameSP.toLocaleLowerCase().includes(searchStr)));
+            && (exp.Category.toLocaleLowerCase().includes(searchStr)
+            || exp.NameSP.toLocaleLowerCase().includes(searchStr)));
           loadProduct(1, filtedData);
           generatePage();
         }
