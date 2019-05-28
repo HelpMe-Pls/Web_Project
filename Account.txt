@@ -1,0 +1,5 @@
+Admin
+admin@admin.com | 123456
+
+User
+tailieust25@gmail.com | 123456
