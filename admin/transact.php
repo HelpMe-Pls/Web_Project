@@ -16,12 +16,14 @@
 		$output['date'] = date('M d, Y', strtotime($row['sales_date']));
 		$subtotal = $row['price']*$row['quantity'];
 		$total += $subtotal;
+		
 		$output['list'] .= "
 			<tr class='prepend_items'>
 				<td>".$row['name']."</td>
 				<td>&#36; ".number_format($row['price'], 2)."</td>
 				<td>".$row['quantity']."</td>
 				<td>&#36; ".number_format($subtotal, 2)."</td>
+				
 			</tr>
 		";
 	}

@@ -5,9 +5,9 @@
 		$output .= '
 			<div class="alert alert-danger">
                 <h4><i class="icon fa fa-warning"></i> Error!</h4>
-                Code to activate account not found.
+                Mã kích hoạt không tồn tại
             </div>
-            <h4>You may <a href="signup.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
+            <h4>Bạn có thể <a href="signup.php">Đăng ký</a>hoặc trở về <a href="index.php">Trang chủ</a>.</h4>
 		'; 
 	}
 	else{
@@ -22,9 +22,9 @@
 				$output .= '
 					<div class="alert alert-danger">
 		                <h4><i class="icon fa fa-warning"></i> Error!</h4>
-		                Account already activated.
+		                Tài khoản đã được kích hoạt.
 		            </div>
-		            <h4>You may <a href="login.php">Login</a> or back to <a href="index.php">Homepage</a>.</h4>
+		            <h4>Bạn có thể <a href="login.php">Đăng nhập</a> hoặc trở về <a href="index.php">Trang chủ</a>.</h4>
 				';
 			}
 			else{
@@ -33,10 +33,10 @@
 					$stmt->execute(['status'=>1, 'id'=>$row['id']]);
 					$output .= '
 						<div class="alert alert-success">
-			                <h4><i class="icon fa fa-check"></i> Success!</h4>
-			                Account activated - Email: <b>'.$row['email'].'</b>.
+			                <h4><i class="icon fa fa-check"></i> Hoàn thành!</h4>
+			                Tài khoản được kích hoạt - Email: <b>'.$row['email'].'</b>.
 			            </div>
-			            <h4>You may <a href="login.php">Login</a> or back to <a href="index.php">Homepage</a>.</h4>
+			             <h4>Bạn có thể <a href="login.php">Đăng nhập</a> hoặc trở về <a href="index.php">Trang chủ</a>.</h4>
 					';
 				}
 				catch(PDOException $e){
@@ -45,7 +45,7 @@
 			                <h4><i class="icon fa fa-warning"></i> Error!</h4>
 			                '.$e->getMessage().'
 			            </div>
-			            <h4>You may <a href="signup.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
+			            <h4>Bạn có thể <a href="signup.php">Đăng ký</a>hoặc trở về <a href="index.php">Trang chủ</a>.</h4>
 					';
 				}
 
@@ -56,9 +56,9 @@
 			$output .= '
 				<div class="alert alert-danger">
 	                <h4><i class="icon fa fa-warning"></i> Error!</h4>
-	                Cannot activate account. Wrong code.
+	                Không thể kích hoạt. Sai mã
 	            </div>
-	            <h4>You may <a href="signup.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
+	            <h4>Bạn có thể <a href="signup.php">Đăng ký</a>hoặc trở về <a href="index.php">Trang chủ</a>.</h4>
 			';
 		}
 

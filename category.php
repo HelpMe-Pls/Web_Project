@@ -11,7 +11,7 @@
 		$catid = $cat['id'];
 	}
 	catch(PDOException $e){
-		echo "There is some problem in connection: " . $e->getMessage();
+		echo "Lỗi kết nối: " . $e->getMessage();
 	}
 
 	$pdo->close();
@@ -62,7 +62,7 @@
 							if($inc == 2) echo "<div class='col-sm-4'></div></div>";
 						}
 						catch(PDOException $e){
-							echo "There is some problem in connection: " . $e->getMessage();
+							echo "Lỗi kết nối: " . $e->getMessage();
 						}
 
 						$pdo->close();

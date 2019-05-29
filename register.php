@@ -15,24 +15,24 @@
 		$_SESSION['lastname'] = $lastname;
 		$_SESSION['email'] = $email;
 
-		if(!isset($_SESSION['captcha'])){
-			require('recaptcha/src/autoload.php');		
-			$recaptcha = new \ReCaptcha\ReCaptcha('6LevO1IUAAAAAFCCiOHERRXjh3VrHa5oywciMKcw', new \ReCaptcha\RequestMethod\SocketPost());
-			$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+		// if(!isset($_SESSION['captcha'])){
+		// 	require('recaptcha/src/autoload.php');		
+		// 	$recaptcha = new \ReCaptcha\ReCaptcha('6LevO1IUAAAAAFCCiOHERRXjh3VrHa5oywciMKcw', new \ReCaptcha\RequestMethod\SocketPost());
+		// 	$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
-			if (!$resp->isSuccess()){
-		  		$_SESSION['error'] = 'Please answer recaptcha correctly';
-		  		header('location: signup.php');	
-		  		exit();	
-		  	}	
-		  	else{
-		  		$_SESSION['captcha'] = time() + (10*60);
-		  	}
+		// 	if (!$resp->isSuccess()){
+		//   		$_SESSION['error'] = 'Please answer recaptcha correctly';
+		//   		header('location: signup.php');	
+		//   		exit();	
+		//   	}	
+		//   	else{
+		//   		$_SESSION['captcha'] = time() + (10*60);
+		//   	}
 
-		}
+		// }
 
 		if($password != $repassword){
-			$_SESSION['error'] = 'Passwords did not match';
+			$_SESSION['error'] = 'Không đúng mật khẩu';
 			header('location: signup.php');
 		}
 		else{
@@ -42,7 +42,7 @@
 			$stmt->execute(['email'=>$email]);
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
-				$_SESSION['error'] = 'Email already taken';
+				$_SESSION['error'] = 'Email đã tồn tại';
 				header('location: signup.php');
 			}
 			else{
@@ -59,12 +59,12 @@
 					$userid = $conn->lastInsertId();
 
 					$message = "
-						<h2>Thank you for Registering.</h2>
-						<p>Your Account:</p>
+						<h2>Cảm ơn bạn đã đăng ký.</h2>
+						<p>Tài khoản:</p>
 						<p>Email: ".$email."</p>
-						<p>Password: ".$_POST['password']."</p>
-						<p>Please click the link below to activate your account.</p>
-						<a href='http://localhost:8080/ecomm/activate.php?code=".$code."&user=".$userid."'>Activate Account</a>
+						<p>Mật khẩu: ".$_POST['password']."</p>
+						<p>Click vào link để kích hoạt.</p>
+						<a href='http://localhost:8080/ecomm/activate.php?code=".$code."&user=".$userid."'>Kích hoạt tài khoản</a>
 					";
 
 					//Load phpmailer
@@ -88,15 +88,15 @@
 				        $mail->SMTPSecure = 'ssl';                           
 				        $mail->Port = 465;                                   
 
-				        $mail->setFrom('testsourcecodester@gmail.com');
+				        $mail->setFrom('kerikuni12@gmail.com');
 				        
 				        //Recipients
 				        $mail->addAddress($email);              
-				        $mail->addReplyTo('testsourcecodester@gmail.com');
+				        $mail->addReplyTo('kerikuni12@gmail.com');
 				       
 				        //Content
 				        $mail->isHTML(true);                                  
-				        $mail->Subject = 'ECommerce Site Sign Up';
+				        $mail->Subject = 'Dang ky tai khoan';
 				        $mail->Body    = $message;
 
 				        $mail->send();
@@ -105,7 +105,7 @@
 				        unset($_SESSION['lastname']);
 				        unset($_SESSION['email']);
 
-				        $_SESSION['success'] = 'Account created. Check your email to activate.';
+				        $_SESSION['success'] = 'Tài khoản đã được tạo. Kiểm tra email của bạn để kích hoạt.';
 				        header('location: signup.php');
 
 				    } 

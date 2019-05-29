@@ -1,58 +1,220 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<body>
 
-	<?php include 'includes/navbar.php'; ?>
-	 
-	  <div class="content-wrapper">
-	    <div class="container">
+<?php include 'includes/navbar.php' ?>
+    
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Giỏ hàng</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Page title area -->
+    
+    
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Tìm kiếm sản phẩm</h2>
+                        <form action="#">
+                            <input type="text" placeholder="tên sản phẩm...">
+                            <input type="submit" value="Tìm kiếm">
+                        </form>
+                    </div>
+                    
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Danh mục sản phẩm</h2>
 
-	      <!-- Main content -->
-	      <section class="content">
-	        <div class="row">
-	        	<div class="col-sm-9">
-	        		<h1 class="page-header">YOUR CART</h1>
-	        		<div class="box box-solid">
-	        			<div class="box-body">
-		        		<table class="table table-bordered">
-		        			<thead>
-		        				<th></th>
-		        				<th>Photo</th>
-		        				<th>Name</th>
-		        				<th>Price</th>
-		        				<th width="20%">Quantity</th>
-		        				<th>Subtotal</th>
-		        			</thead>
-		        			<tbody id="tbody">
-		        			</tbody>
-		        		</table>
-	        			</div>
-	        		</div>
-	        		<?php
+                         <?php
+                            $now = date('Y-m-d');
+                            $conn = $pdo->open();
+
+                            $stmt = $conn->prepare("SELECT * FROM products WHERE date_view=:now ORDER BY counter DESC LIMIT 3");
+                            $stmt->execute(['now'=>$now]);
+                            foreach($stmt as $row){
+                                $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                                echo '
+                                <div class="thubmnail-recent">
+                                        <img src="'.$image.'" class="recent-thumb" alt="">
+                                        <h2><a href="product.php?product='.$row['slug'].'">'.$row['name'].'</a></h2>
+                                        <div class="product-sidebar-price">
+                                            <ins>'.$row['price'].'</ins>
+                                        </div>                             
+                                    </div> 
+                                            
+                                ';
+                            }
+
+                            $pdo->close();
+                        ?>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <form method="post" action="#">
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">&nbsp;</th>  
+                                            <th class="product-thumbnail">Ảnh</th>                                     
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-price">Giá</th>
+                                            <th class="product-quantity">Số lượng</th>
+                                            <th class="product-subtotal">Tổng cộng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="shop-table">
+                                        
+                                        
+                                    </tbody>
+
+                                </table>
+                            </form>
+
+							<?php
 	        			if(isset($_SESSION['user'])){
-	        				echo '<a href="checkout.php" title"Check Out" class="btn btn-success">Check Out</a>';
+	        				echo '<a href="checkout.php" title"Check Out" class="btn btn-success">Thanh toán</a>';
 	        			}
 	        			else{
 	        				echo "
-	        					<h4>You need to <a href='login.php'>Login</a> to checkout.</h4>
+	        					<h4>Bạn cần <a href='login.php'>Đăng nhập</a> để thanh toán.</h4>
 	        				";
 	        			}
 	        		?>
-	        	</div>
-	        	<div class="col-sm-3">
-	        		<?php include 'includes/sidebar.php'; ?>
-	        	</div>
-	        </div>
-	      </section>
-	     
-	    </div>
-	  </div>
-  	<?php $pdo->close(); ?>
-  	<?php include 'includes/footer.php'; ?>
-</div>
+                            <div class="cart-collaterals" style="margin-top: 50px;">
 
-<?php include 'includes/scripts.php'; ?>
+
+                            <div >
+                                <h2>Có thể bạn sẽ thích..</h2>
+                                <ul class="products">
+<?php
+                $now = date('Y-m-d');
+                $conn = $pdo->open();
+
+                $stmt = $conn->prepare("SELECT * FROM products WHERE date_view=:now ORDER BY counter DESC LIMIT 3");
+                $stmt->execute(['now'=>$now]);
+                foreach($stmt as $row){
+                    $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                    echo '
+                        
+                                    <li class="product">
+                                        <a href="product.php?product='.$row['slug'].'">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="'.$image.'">
+                                            <h3>'.$row['name'].'</h3>
+                                            <span class="price"></span>'.$row['price'].'</span>
+                                        </a>
+                                    </li>
+                                
+                    ';
+                }
+
+                $pdo->close();
+            ?>
+                
+            </ul>
+
+                            </div>
+
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>Shop<span>taiNghe</span></h2>
+                        <p>Chuyên cung cấp các mặt hàng tai nghe chất lượng đến từ các hãng tai nghe hàng đầu thế giới</p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Xem chi tiết: </h2>
+                        <ul>
+                            <li><a href="#">Tài khoản</a></li>
+                            <li><a href="#">Lịch sử ngân hàng</a></li>
+                            <li><a href="#">Các sản phẩm bán chạy</a></li>
+                            <li><a href="#">Thông tin nhà cung cấp</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Các loại sản phẩm </h2>
+                        <ul>
+                            <li><a href="shop.html?category=Headphones">Headphone</a></li>
+                            <li><a href="shop.html?category=Earbuds">Earbuds</a></li>
+                            <li><a href="shop.html?category=Tai nghe bluetooth">Tai nghe bluetooth</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Khách hàng thân thiết</h2>
+                        <p>Đăng kí thành viên và những ưu đãi hấp dẫn sẽ được gửi đến mail của bạn</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="email" placeholder="Nhập email">
+                                <input type="submit" value="Đăng ký">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+    
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; 2019 All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
+   
+ <?php include 'includes/scripts.php'; ?>
+    
 <script>
 var total = 0;
 $(function(){
@@ -135,7 +297,7 @@ function getDetails(){
 		url: 'cart_details.php',
 		dataType: 'json',
 		success: function(response){
-			$('#tbody').html(response);
+			$('.shop-table').html(response);
 			getCart();
 		}
 	});
@@ -152,46 +314,6 @@ function getTotal(){
 	});
 }
 </script>
-<!-- Paypal Express -->
-<script>
-paypal.Button.render({
-    env: 'sandbox', // change for production if app is live,
 
-	client: {
-        sandbox:    'ASb1ZbVxG5ZFzCWLdYLi_d1-k5rmSjvBZhxP2etCxBKXaJHxPba13JJD_D3dTNriRbAv3Kp_72cgDvaZ',
-        //production: 'AaBHKJFEej4V6yaArjzSx9cuf-UYesQYKqynQVCdBlKuZKawDDzFyuQdidPOBSGEhWaNQnnvfzuFB9SM'
-    },
-
-    commit: true, // Show a 'Pay Now' button
-
-    style: {
-    	color: 'gold',
-    	size: 'small'
-    },
-
-    payment: function(data, actions) {
-        return actions.payment.create({
-            payment: {
-                transactions: [
-                    {
-                    	//total purchase
-                        amount: { 
-                        	total: total, 
-                        	currency: 'USD' 
-                        }
-                    }
-                ]
-            }
-        });
-    },
-
-    onAuthorize: function(data, actions) {
-        return actions.payment.execute().then(function(payment) {
-			window.location = 'sales.php?pay='+payment.id;
-        });
-    },
-
-}, '#paypal-button');
-</script>
 </body>
 </html>

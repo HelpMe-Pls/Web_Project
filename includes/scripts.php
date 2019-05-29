@@ -13,6 +13,7 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- CK Editor -->
 <script src="bower_components/ckeditor/ckeditor.js"></script>
+
 <script>
   $(function () {
     // Datatable
@@ -76,7 +77,7 @@ function getCart(){
 		dataType: 'json',
 		success: function(response){
 			$('#cart_menu').html(response.list);
-			$('.cart_count').html(response.count);
+			$('.product-count').html(response.count);
 		}
 	});
 }
