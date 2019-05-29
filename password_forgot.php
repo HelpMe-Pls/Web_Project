@@ -21,7 +21,7 @@
       }
     ?>
   	<div class="login-box-body">
-    	<p class="login-box-msg">Nhập tài khoản email</p>
+    	<p class="login-box-msg">Enter email associated with account</p>
 
     	<form action="reset.php" method="POST">
       		<div class="form-group has-feedback">
@@ -30,13 +30,13 @@
       		</div>
       		<div class="row">
     			<div class="col-xs-4">
-          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="reset"><i class="fa fa-mail-forward"></i> Gửi</button>
+          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="reset"><i class="fa fa-mail-forward"></i> Send</button>
         		</div>
       		</div>
     	</form>
       <br>
-      <a href="login.php">Tôi không nhớ mật khẩu</a><br>
-      <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
+      <a href="login.php">I rememberd my password</a><br>
+      <a href="index.php"><i class="fa fa-home"></i> Home</a>
   	</div>
 </div>
 	

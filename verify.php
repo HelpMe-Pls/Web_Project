@@ -23,24 +23,24 @@
 						}
 					}
 					else{
-						$_SESSION['error'] = 'Sai mật khẩu';
+						$_SESSION['error'] = 'Incorrect Password';
 					}
 				}
 				else{
-					$_SESSION['error'] = 'Tài khoản chưa được kích hoạt.';
+					$_SESSION['error'] = 'Account not activated.';
 				}
 			}
 			else{
-				$_SESSION['error'] = 'Không tìm thấy email';
+				$_SESSION['error'] = 'Email not found';
 			}
 		}
 		catch(PDOException $e){
-			echo "Lỗi kết nối: " . $e->getMessage();
+			echo "There is some problem in connection: " . $e->getMessage();
 		}
 
 	}
 	else{
-		$_SESSION['error'] = 'Vui lòng nhập thông tin';
+		$_SESSION['error'] = 'Input login credentails first';
 	}
 
 	$pdo->close();

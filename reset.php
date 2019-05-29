@@ -22,11 +22,11 @@
 				$stmt->execute(['code'=>$code, 'id'=>$row['id']]);
 				
 				$message = "
-					<h2>Khôi phục mật khẩu</h2>
-					<p>Tài khoản:</p>
+					<h2>Password Reset</h2>
+					<p>Your Account:</p>
 					<p>Email: ".$email."</p>
-					<p>Vui lòng click vào link để khôi phục mật khẩu.</p>
-					<a href='http://localhost:8080/ecomm/password_reset.php?code=".$code."&user=".$row['id']."'>Khôi phục mật khẩu</a>
+					<p>Please click the link below to reset your password.</p>
+					<a href='http://localhost/ecommerce/password_reset.php?code=".$code."&user=".$row['id']."'>Reset Password</a>
 				";
 
 				//Load phpmailer
@@ -38,8 +38,8 @@
 			        $mail->isSMTP();                                     
 			        $mail->Host = 'smtp.gmail.com';                      
 			        $mail->SMTPAuth = true;                               
-			        $mail->Username = 'kerikuni12@gmail.com';     
-			        $mail->Password = 'kuyeuco1';                    
+			        $mail->Username = 'testsourcecodester@gmail.com';     
+			        $mail->Password = 'mysourcepass';                    
 			        $mail->SMTPOptions = array(
 			            'ssl' => array(
 			            'verify_peer' => false,
@@ -50,20 +50,20 @@
 			        $mail->SMTPSecure = 'ssl';                           
 			        $mail->Port = 465;                                   
 
-			        $mail->setFrom('kerikuni12@gmail.com');
+			        $mail->setFrom('testsourcecodester@gmail.com');
 			        
 			        //Recipients
 			        $mail->addAddress($email);              
-			        $mail->addReplyTo('kerikuni12@gmail.com');
+			        $mail->addReplyTo('testsourcecodester@gmail.com');
 			       
 			        //Content
 			        $mail->isHTML(true);                                  
-			        $mail->Subject = 'Khôi phục mật khẩu';
+			        $mail->Subject = 'ECommerce Site Password Reset';
 			        $mail->Body    = $message;
 
 			        $mail->send();
 
-			        $_SESSION['success'] = 'Link khôi phục mật khẩu đã được gửi';
+			        $_SESSION['success'] = 'Password reset link sent';
 			     
 			    } 
 			    catch (Exception $e) {
@@ -75,14 +75,14 @@
 			}
 		}
 		else{
-			$_SESSION['error'] = 'Email không tìm thấy';
+			$_SESSION['error'] = 'Email not found';
 		}
 
 		$pdo->close();
 
 	}
 	else{
-		$_SESSION['error'] = 'Liên kết email với tài khoản';
+		$_SESSION['error'] = 'Input email associated with account';
 	}
 
 	header('location: password_forgot.php');

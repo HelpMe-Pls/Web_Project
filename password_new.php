@@ -13,7 +13,7 @@
 		$repassword = $_POST['repassword'];
 
 		if($password != $repassword){
-			$_SESSION['error'] = 'Không đúng mật khẩu';
+			$_SESSION['error'] = 'Passwords did not match';
 			header('location: '.$path);
 		}
 		else{
@@ -30,7 +30,7 @@
 					$stmt = $conn->prepare("UPDATE users SET password=:password WHERE id=:id");
 					$stmt->execute(['password'=>$password, 'id'=>$row['id']]);
 
-					$_SESSION['success'] = 'Mật khẩu đã được khôi phục';
+					$_SESSION['success'] = 'Password successfully reset';
 					header('location: login.php');
 				}
 				catch(PDOException $e){
@@ -39,7 +39,7 @@
 				}
 			}
 			else{
-				$_SESSION['error'] = 'Mã không hợp lệ';
+				$_SESSION['error'] = 'Code did not match with user';
 				header('location: '.$path);
 			}
 

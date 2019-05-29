@@ -20,7 +20,7 @@
 	       			$stmt->execute(['keyword' => '%'.$_POST['keyword'].'%']);
 	       			$row = $stmt->fetch();
 	       			if($row['numrows'] < 1){
-	       				echo '<h1 class="page-header">Không tìm thấy kết quả nào cho <i>'.$_POST['keyword'].'</i></h1>';
+	       				echo '<h1 class="page-header">No results found for <i>'.$_POST['keyword'].'</i></h1>';
 	       			}
 	       			else{
 	       				echo '<h1 class="page-header">Search results for <i>'.$_POST['keyword'].'</i></h1>';
@@ -54,7 +54,7 @@
 							
 						}
 						catch(PDOException $e){
-							echo "Lỗi kết nối: " . $e->getMessage();
+							echo "There is some problem in connection: " . $e->getMessage();
 						}
 					}
 

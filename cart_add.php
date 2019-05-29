@@ -8,6 +8,7 @@
 	$id = $_POST['id'];
 	$quantity = $_POST['quantity'];
 
+
 	if(isset($_SESSION['user'])){
 		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM cart WHERE user_id=:user_id AND product_id=:product_id");
 		$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$id]);
@@ -16,7 +17,7 @@
 			try{
 				$stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)");
 				$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$id, 'quantity'=>$quantity]);
-				$output['message'] = 'Sản phẩm đã được thêm';
+				$output['message'] = 'Item added to cart';
 				
 			}
 			catch(PDOException $e){
@@ -27,9 +28,9 @@
 		else{
 
 			try{
-				$stmt = $conn->prepare("UPDATE cart SET quantity = :quantity WHERE user_id=:user_id && product_id=:product");
-				$stmt->execute(['user_id'=>$user['id'], 'product'=>$id, 'quantity' => $quantity]);
-				$output['message'] = 'Sản phẩm đã được thêm';
+				$stmt = $conn->prepare("UPDATE cart SET quantity = quantity WHERE user_id=:user_id && product_id=:product");
+				$stmt->execute(['user_id'=>$user['id'], 'product'=>$id]);
+				$output['message'] = 'Item added to cart 111';
 				
 			}
 			catch(PDOException $e){
@@ -51,18 +52,18 @@
 
 		if(in_array($id, $exist)){
 			$output['error'] = true;
-			$output['message'] = 'Sản phẩm đã có trong giỏ hàng';
+			$output['message'] = 'Product already in cart';
 		}
 		else{
 			$data['productid'] = $id;
 			$data['quantity'] = $quantity;
 
 			if(array_push($_SESSION['cart'], $data)){
-				$output['message'] = 'Sản phẩm đã được thêm';
+				$output['message'] = 'Item added to cart';
 			}
 			else{
 				$output['error'] = true;
-				$output['message'] = 'Không thể thêm sản phẩm';
+				$output['message'] = 'Cannot add item to cart';
 			}
 		}
 

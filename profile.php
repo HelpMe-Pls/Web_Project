@@ -8,73 +8,15 @@
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
-	<div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> Yêu thích</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i>Giỏ hàng</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Thanh toán</a></li>
-                            <li><a href="login.php"><i class="fa fa-user"></i> Đăng nhập</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End header area -->
-    
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><img src="imgs/logo.png"></h1>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Giỏ hàng - <span class="cart-amunt">0</span><span <span style="color: #5a88ca; font-weight: 700;">đ</span><i class="fa fa-shopping-cart"></i> <span class="product-count">0</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
-    
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Trang chủ</a></li>
-                        <li><a href="shop.html">Các sản phẩm</a></li>
-                        <li><a href="single-product.html">Chi tiết sản phẩm</a></li>
-                        <li><a href="cart.html">Giỏ hàng</a></li>
-                        <li><a href="checkout.html">Thanh toán</a></li>
-                        <li><a href="contact.html">Liên hệ</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div> <!-- End mainmenu area -->
+	<?php include 'includes/navbar.php'; ?>
 	 
 	  <div class="content-wrapper">
 	    <div class="container">
 
 	      <!-- Main content -->
 	      <section class="content">
-	        <div class="contact1">
-		<div class="container-contact1">	
+	        <div class="row">
+	        	<div class="col-sm-9">
 	        		<?php
 	        			if(isset($_SESSION['error'])){
 	        				echo "
@@ -102,16 +44,16 @@
 	        				<div class="col-sm-9">
 	        					<div class="row">
 	        						<div class="col-sm-3">
-	        							<h4>Tên:</h4>
+	        							<h4>Name:</h4>
 	        							<h4>Email:</h4>
-	        							<h4>Liên lạc:</h4>
-	        							<h4>Địa chỉ:</h4>
-	        							<h4>Ngày đăng kí:</h4>
+	        							<h4>Contact Info:</h4>
+	        							<h4>Address:</h4>
+	        							<h4>Member Since:</h4>
 	        						</div>
 	        						<div class="col-sm-9">
 	        							<h4><?php echo $user['firstname'].' '.$user['lastname']; ?>
 	        								<span class="pull-right">
-	        									<a href="#edit" class="btn btn-success btn-flat btn-sm" data-toggle="modal"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+	        									<a href="#edit" class="btn btn-success btn-flat btn-sm" data-toggle="modal"><i class="fa fa-edit"></i> Edit</a>
 	        								</span>
 	        							</h4>
 	        							<h4><?php echo $user['email']; ?></h4>
@@ -125,16 +67,16 @@
 	        		</div>
 	        		<div class="box box-solid">
 	        			<div class="box-header with-border">
-	        				<h4 class="box-title"><i class="fa fa-calendar"></i> <b>Lịch sử giao dịch</b></h4>
+	        				<h4 class="box-title"><i class="fa fa-calendar"></i> <b>Transaction History</b></h4>
 	        			</div>
 	        			<div class="box-body">
 	        				<table class="table table-bordered" id="example1">
 	        					<thead>
 	        						<th class="hidden"></th>
-	        						<th>Ngày</th>
-	        						<th>Giao dịch#</th>
-	        						<th>Số tiền</th>
-	        						<th>Chi tiết</th>
+	        						<th>Date</th>
+	        						<th>Transaction#</th>
+	        						<th>Amount</th>
+	        						<th>Full Details</th>
 	        					</thead>
 	        					<tbody>
 	        					<?php
@@ -174,7 +116,9 @@
 	        			</div>
 	        		</div>
 	        	</div>
-	        	
+	        	<div class="col-sm-3">
+	        		<?php include 'includes/sidebar.php'; ?>
+	        	</div>
 	        </div>
 	      </section>
 	     

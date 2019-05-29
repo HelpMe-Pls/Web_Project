@@ -32,7 +32,7 @@
 				$stmt = $conn->prepare("UPDATE users SET email=:email, password=:password, firstname=:firstname, lastname=:lastname, contact_info=:contact, address=:address, photo=:photo WHERE id=:id");
 				$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'contact'=>$contact, 'address'=>$address, 'photo'=>$filename, 'id'=>$user['id']]);
 
-				$_SESSION['success'] = 'Tài khoản đã được cập nhật';
+				$_SESSION['success'] = 'Account updated successfully';
 			}
 			catch(PDOException $e){
 				$_SESSION['error'] = $e->getMessage();
@@ -40,11 +40,11 @@
 			
 		}
 		else{
-			$_SESSION['error'] = 'Sai mật khẩu';
+			$_SESSION['error'] = 'Incorrect password';
 		}
 	}
 	else{
-		$_SESSION['error'] = 'Vui lòng điền thông tin';
+		$_SESSION['error'] = 'Fill up edit form first';
 	}
 
 	$pdo->close();
