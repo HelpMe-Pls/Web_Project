@@ -159,8 +159,7 @@
                                     <div class="single-product">
                                         <div class="product-f-image">
                                             <img src="$image" alt="">
-                                            <div class="product-hover">
-                                                <a href="#" data-name="$name" data-price="700000" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                            <div class="product-hover">                                                
                                                 <a href="product.php?product=$slug" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                             </div>
                                         </div>
@@ -217,146 +216,143 @@ EOD;
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Bán chạy nhất</h2>
-                        <a href="" class="wid-view-more">Xem</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=23"><img src="imgs/Headphones/headphone3.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=23">Victor</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>69000đ</ins> <del>79000đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=2"><img src="imgs/Earbuds/earbuds2.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=2">Bravo</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>89999đ</ins> <del>99900đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=3"><img src="imgs/Earbuds/earbuds3.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=3">Charlie</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>89999đ</ins> <del>99900đ</del>
-                            </div>                            
-                        </div>
+                        <h2 class="product-wid-title">Bán chạy nhất</h2>                        
+                        <?php
+                        $month = date('m');
+                        $conn = $pdo->open();
+
+                        try{                            
+                            $stmt = $conn->prepare("SELECT * FROM products ORDER BY counter DESC LIMIT 3");
+                            $stmt->execute();
+                            foreach ($stmt as $row) {
+                                $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                                $name = $row['name'];
+                                $slug =$row['slug'];
+                                $price = number_format($row['price'], 2);
+                               
+                                $chuoi =<<<EOD
+                                    <div class="single-wid-product">
+                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="$slug">$name</a></h2>
+                                        <div class="product-wid-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-wid-price">
+                                            <ins>$price đ</ins>
+                                        </div>                            
+                                    </div>
+EOD;
+
+                                    echo $chuoi;
+                               
+                            }
+                           
+                        }
+                        catch(PDOException $e){
+                            echo "There is some problem in connection: " . $e->getMessage();
+                        }
+
+                        $pdo->close();
+?> 
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Đã xem gần đây</h2>
-                        <a href="#" class="wid-view-more">Xem</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=25"><img src="imgs/Headphones/headphone5.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=25">Xray</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>99000đ</ins> <del>100000đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=21"><img src="imgs/Headphones/headphone1.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=21">GSP500</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>700000đ</ins> <del>720000đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=1"><img src="imgs/Earbuds/earbuds1.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=1">Alfa</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>89999đ</ins> <del>99900đ</del>
-                            </div>                            
-                        </div>
+                        <h2 class="product-wid-title">Đã xem gần đây</h2>                        
+                         <?php
+                        $month = date('m');
+                        $conn = $pdo->open();
+
+                        try{                            
+                            $stmt = $conn->prepare("SELECT * FROM products ORDER BY date_view DESC LIMIT 3");
+                            $stmt->execute();
+                            foreach ($stmt as $row) {
+                                $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                                $name = $row['name'];
+                                $slug =$row['slug'];
+                                $price = number_format($row['price'], 2);
+                               
+                                $chuoi =<<<EOD
+                                     <div class="single-wid-product">
+                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="$slug">$name</a></h2>
+                                        <div class="product-wid-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-wid-price">
+                                            <ins>$price</ins> 
+                                        </div>                            
+                                    </div>
+EOD;
+
+                                    echo $chuoi;
+                               
+                            }
+                           
+                        }
+                        catch(PDOException $e){
+                            echo "There is some problem in connection: " . $e->getMessage();
+                        }
+
+                        $pdo->close();
+?> 
+                       
+                       
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Sản phẩm mới</h2>
-                        <a href="#" class="wid-view-more">Xem</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=22"><img src="imgs/Headphones/headphone2.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=22">Uniform</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>600000đ</ins> <del>800000đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=24"><img src="imgs/Headphones/headphone4.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=24">Whiskey</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>99000đ</ins> <del>100000đ</del>
-                            </div>                            
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html?id=2"><img src="imgs/Earbuds/earbuds2.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html?id=2">Bravo</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>89999đ</ins> <del>99900đ</del>
-                            </div>                            
-                        </div>
+                        <h2 class="product-wid-title">Đã xem gần đây</h2>                        
+                    <?php
+                        $month = date('m');
+                        $conn = $pdo->open();
+
+                        try{                            
+                            $stmt = $conn->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 3");
+                            $stmt->execute();
+                            foreach ($stmt as $row) {
+                                $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                                $name = $row['name'];
+                                $slug =$row['slug'];
+                                $price = number_format($row['price'], 2);
+                               
+                                $chuoi =<<<EOD
+                                     <div class="single-wid-product">
+                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="$slug">$name</a></h2>
+                                        <div class="product-wid-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-wid-price">
+                                            <ins>$price</ins> 
+                                        </div>                            
+                                    </div>
+EOD;
+
+                                    echo $chuoi;
+                               
+                            }
+                           
+                        }
+                        catch(PDOException $e){
+                            echo "There is some problem in connection: " . $e->getMessage();
+                        }
+
+                        $pdo->close();
+?> 
                     </div>
                 </div>
             </div>
@@ -440,7 +436,7 @@ EOD;
             </div>
         </div>
     </div> <!-- End footer bottom area -->
-   
+   <?php include 'includes/scripts.php'; ?>
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
@@ -456,10 +452,11 @@ EOD;
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
-    <script src="js/shopcart.js"></script>
+    <!-- <script src="js/shopcart.js"></script> -->
     
     <!-- Slider -->
     <script type="text/javascript" src="js/bxslider.min.js"></script>
 	<script type="text/javascript" src="js/script.slider.js"></script>
+
   </body>
 </html>

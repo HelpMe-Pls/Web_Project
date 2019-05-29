@@ -4,13 +4,13 @@
 	if(isset($_GET['pay'])){
 		$payid = $_GET['pay'];
 		$date = date('Y-m-d');
-
+		$cmt = $_GET['cmt'];
 		$conn = $pdo->open();
 
 		try{
 			
-			$stmt = $conn->prepare("INSERT INTO sales (user_id, pay_id, sales_date) VALUES (:user_id, :pay_id, :sales_date)");
-			$stmt->execute(['user_id'=>$user['id'], 'pay_id'=>$payid, 'sales_date'=>$date]);
+			$stmt = $conn->prepare("INSERT INTO sales (user_id, pay_id, sales_date, cmt) VALUES (:user_id, :pay_id, :sales_date, :cmt)");
+			$stmt->execute(['user_id'=>$user['id'], 'pay_id'=>$payid, 'sales_date'=>$date, 'cmt'=>$cmt]);
 			$salesid = $conn->lastInsertId();
 			
 			try{
@@ -19,6 +19,7 @@
 
 				foreach($stmt as $row){
 					$stmt = $conn->prepare("INSERT INTO details (sales_id, product_id, quantity) VALUES (:sales_id, :product_id, :quantity)");
+
 					$stmt->execute(['sales_id'=>$salesid, 'product_id'=>$row['product_id'], 'quantity'=>$row['quantity']]);
 				}
 

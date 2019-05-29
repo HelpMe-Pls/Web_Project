@@ -30,11 +30,12 @@
 				$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
 				$subtotal = $row['price']*$row['quantity'];
 				$total += $subtotal;
+				$name = $row['name'];
 				$output .= "
 					<tr>
 						<td><button type='button' data-id='".$row['cartid']."' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
 						<td><img src='".$image."' width='30px' height='30px'></td>
-						<td>".$row['name']."</td>
+						<td>".$name."</td>
 						<td>&#36; ".number_format($row['price'], 2)."</td>
 						<td class='input-group'>
 							<span class='input-group-btn'>
@@ -67,7 +68,7 @@
 		if(count($_SESSION['cart']) != 0){
 			$total = 0;
 			foreach($_SESSION['cart'] as $row){
-				$stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname FROM products LEFT JOIN category ON category.id=products.category_id WHERE products.id=:id");
+				$stmt = $conn->prepare("SELECT products.*, products.name AS prodname, category.name AS catname FROM products LEFT JOIN category ON category.id=products.category_id WHERE products.id=:id");
 				$stmt->execute(['id'=>$row['productid']]);
 				$product = $stmt->fetch();
 				$image = (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg';
