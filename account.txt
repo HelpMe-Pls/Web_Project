@@ -1,0 +1,5 @@
+admin
+admin@admin.com | 123456
+
+usser
+kerikuni12@gmail.com | 123456

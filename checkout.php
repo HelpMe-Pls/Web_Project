@@ -272,7 +272,7 @@ EOD;
             </div>
         </div>
     </div> <!-- End footer bottom area -->
-   
+   <?php include 'includes/scripts.php'; ?>
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
