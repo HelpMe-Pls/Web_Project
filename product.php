@@ -206,7 +206,12 @@
                                                         echo "
                                                             <h2>Đánh giá </h2>
                                                             <p>$review</p>
-                                                            <h4>Bạn cần <a href='login.php'>Đăng nhập</a> để đánh giá.</h4>
+                                                            <form  action='login.php' class='checkout' name='checkout'>
+                                                                <input type='hidden' name='product' value='$slug'>
+                                                                <p>bạn cần <input type='submit' value='đăng nhập'>để đánh giá</p>
+                                                                <input type='hidden' name='href' value='product'>
+                                                            </form>
+                                                            
                                                         ";
                                                     }
                                                 ?>
