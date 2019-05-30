@@ -112,7 +112,7 @@
                                             <ins>$price </ins> <del>720000đ</del>
                                         </div> 
                                     </div>
-EOD;
+                                EOD;
 
                                     echo $chuoi;
                                 //if($inc == 3) echo "</div>";

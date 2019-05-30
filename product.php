@@ -3,6 +3,13 @@
 	$conn = $pdo->open();
 
 	$slug = $_GET['product'];
+    
+    if(isset($_GET['review'])){
+        // echo "ton tai";
+        $rv = $_GET['review'];        
+       $stmt = $conn->prepare("UPDATE products SET review=:review1 WHERE slug=:slug");
+        $stmt->execute(['review1'=>$rv, 'slug'=> $slug]);
+    }
 
 	try{
 		 		
@@ -11,6 +18,7 @@
 
 	    $product = $stmt->fetch();
 	    $catid = $product['category_id'];
+        $review = $product['review'];
 		
 	}
 	catch(PDOException $e){
@@ -27,6 +35,9 @@
 		$stmt = $conn->prepare("UPDATE products SET counter=1, date_view=:now WHERE id=:id");
 		$stmt->execute(['id'=>$product['prodid'], 'now'=>$now]);
 	}
+
+    
+    
 
 ?>
 <?php include 'includes/header.php'; ?>
@@ -152,15 +163,49 @@
                                     
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>                                            
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a></li>                                                                                     
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                <h2>Product Description</h2>  
+                                                <h2>Mô tả</h2>  
                                                 <p><?php echo $product['description']; ?></p>
 
-                                            </div>                                            
+                                            </div>
+                                            
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                
+                                                <?php
+                                                    
+                                                    if(isset($_SESSION['user'])){
+                                                        $chuoi =<<<EOD
+                                                            <h2>Đánh giá </h2>
+                                                            <p>$review</p>
+                                                            <p></p>
+                                                            <form  action="product.php?product=$slug" class="checkout" name="checkout">
+                                                                <input type="hidden" name="product" value="$slug">
+                                                                <p><label for="review">Ý kiến đóng góp</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                                <p><input type="submit" value="Gửi"></p>
+                                                            </form>
+                                                            EOD;
+                                                        echo $chuoi;
+                                                    }
+                                                    else{
+
+                                                        echo "
+                                                            <h2>Đánh giá </h2>
+                                                            <p>$review</p>
+                                                            <h4>Bạn cần <a href='login.php'>Đăng nhập</a> để đánh giá.</h4>
+                                                        ";
+                                                    }
+                                                ?>
+
+
+                                                
+                                            </div> 
+                                                                                  
                                         </div>
+                                        
                                     </div>
                                     
                                 </div>
