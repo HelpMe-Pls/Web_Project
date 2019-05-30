@@ -8,9 +8,10 @@
                             <li><a href="checkout.php"><i class="fa fa-user"></i> Thanh toán</a></li>
                             <li><a href="login.php"><i class="fa fa-user"></i> Đăng nhập</a></li>
                             <?php 
-                                if(isset($_SESSION['user']))
+                                if(isset($_SESSION['user'])){                                    
                                     echo '<li><a href="profile.php"><i class="fa fa-user"></i>Cá nhân</a></li>';
                                     echo '<li><a href="logout.php"><i class="fa fa-user"></i>Đăng xuất</a></li>';
+                                }
                              ?>
                         </ul>
                     </div>
