@@ -23,11 +23,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Trang chủ</a></li>
-                        <li><a href="shop.html">Các sản phẩm</a></li>
-                        <li><a href="single-product.html">Chi tiết sản phẩm</a></li>
-                        <li><a href="cart.html">Giỏ hàng</a></li>
-                        <li><a href="checkout.html">Thanh toán</a></li>
+                        <li class="active"><a href="index.php">Trang chủ</a></li>
+                        <li><a href="shop.php">Các sản phẩm</a></li>
+                        <li><a href="product.php">Chi tiết sản phẩm</a></li>
+                        <li><a href="cart_view.php">Giỏ hàng</a></li>
+                        <li><a href="checkout.php">Thanh toán</a></li>
                         <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </div>  
