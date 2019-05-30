@@ -112,13 +112,13 @@
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
 						    	
 	       						echo '
-	       							<div class="thubmnail-recent">
-			                            <img src="'.$image.'" class="recent-thumb" alt="">
-			                            <h2><a href="'.$row['slug'].'">'.$row['name'].'</a></h2>
-			                            <div class="product-sidebar-price">
-			                                <ins>'.$row['price'].'</ins> 
-			                            </div>                             
-			                        </div>
+                                   <div class="thubmnail-recent">
+                                        <img src="'.$image.'" class="recent-thumb" alt="">
+                                        <h2><a href="product.php?product='.$row['slug'].'">'.$row['name'].'</a></h2>
+                                        <div class="product-sidebar-price">
+                                            <ins>'.$row['price'].'</ins> 
+                                        </div>                             
+                                    </div>
 			                        ';
 	       						
 						    }

@@ -197,8 +197,8 @@
                                
                                 $chuoi =<<<EOD
                                     <div class="single-wid-product">
-                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
-                                        <h2><a href="$slug">$name</a></h2>
+                                        <a href="product.php?product=$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="product.php?product=$slug">$name</a></h2>
                                         <div class="product-wid-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -244,8 +244,8 @@ EOD;
                                
                                 $chuoi =<<<EOD
                                      <div class="single-wid-product">
-                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
-                                        <h2><a href="$slug">$name</a></h2>
+                                        <a href="product.php?product=$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="product.php?product=$slug">$name</a></h2>
                                         <div class="product-wid-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -292,8 +292,8 @@ EOD;
                                
                                 $chuoi =<<<EOD
                                      <div class="single-wid-product">
-                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
-                                        <h2><a href="$slug">$name</a></h2>
+                                        <a href="product.php?product=$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="product.php?product=$slug">$name</a></h2>
                                         <div class="product-wid-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
