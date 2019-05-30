@@ -3,41 +3,7 @@
 <body class="hold-transition skin-blue layout-top-nav">
 <body>
    
-    <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> Yêu thích</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i>Giỏ hàng</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Thanh toán</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Đăng nhập</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End header area -->
-    
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="imgs/logo.png"></a></h1>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Giỏ - <span class="cart-amunt">0</span><span <span style="color: #5a88ca; font-weight: 700;">đ</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">0</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
-    
+<?php include 'includes/navbar.php'; ?>
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
@@ -51,24 +17,24 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="shop.html">Các sản phẩm</a></li>
-                        <li><a href="single-product.html">Chi tiết sản phẩm</a></li>
-                        <li><a href="cart.html">Giỏ hàng</a></li>
-                        <li class="active"><a href="checkout.html">Thanh toán</a></li>
+                        <li><a href="index.php">Trang chủ</a></li>
+                        <li><a href="shop.php">Các sản phẩm</a></li>
+                        <li><a href="cart_view.php">Giỏ hàng</a></li>
+                        <li class="active"><a href="checkout.php">Thanh toán</a></li>
                         <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </div>  
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div>
+ <!-- End mainmenu area -->
     
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Giỏ hàng</h2>
+                        <h2>Hoá đơn</h2>
                     </div>
                 </div>
             </div>
@@ -83,53 +49,55 @@
                 <div class="col-md-4">
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Tìm kiếm sản phẩm</h2>
-                        <form action="">
-                            <input type="text" placeholder="tên sản phẩm...">
+                        <form action="search.php" method="POST">
+                            <input name = "keyword" type="text" placeholder="tên sản phẩm...">
                             <input type="submit" value="Tìm kiếm">
                         </form>
                     </div>
                     
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Danh mục sản Phẩm</h2>
-                        <div class="thubmnail-recent">
-                            <img src="imgs/Headphones/headphone1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html?id=21">GSP500</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>700000đ</ins> <del>720000đ</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="imgs/Headphones/headphone2.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html?id=22">Uniform</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>600000đ</ins> <del>800000đ</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="imgs/Headphones/headphone3.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html?id=23">Victor</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>69000đ</ins> <del>79000đ</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="imgs/Headphones/headphone4.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html?id=24">Whiskey</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>99000đ</ins> <del>100000đ</del>
-                            </div>                             
-                        </div>
-                    </div>
-                    
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Bài đăng gần đây</h2>
-                        <ul>
-                            <li><a href="single-product.html?id=1">Tai nghe Alfra</a></li>
-                            <li><a href="single-product.html?id=2">Tai nghe Bravo</a></li>
-                            <li><a href="single-product.html?id=3">Tai nghe Charlie</a></li>
-                            <li><a href="single-product.html?id=4">Tai nghe Delta</a></li>
-                            <li><a href="single-product.html?id=5">Tai nghe Echo</a></li>
-                        </ul>
+                        <h2 class="sidebar-title">Sản phẩm bán chạy</h2>
+                        <?php
+                        $month = date('m');
+                        $conn = $pdo->open();
+
+                        try{                            
+                            $stmt = $conn->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 3");
+                            $stmt->execute();
+                            foreach ($stmt as $row) {
+                                $image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+                                $name = $row['name'];
+                                $slug =$row['slug'];
+                                $price = number_format($row['price'], 2);
+                               
+                                $chuoi =<<<EOD
+                                     <div class="single-wid-product">
+                                        <a href="$slug"><img src="$image" alt="" class="product-thumb"></a>
+                                        <h2><a href="$slug">$name</a></h2>
+                                        <div class="product-wid-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-wid-price">
+                                            <ins>$price</ins> 
+                                        </div>                            
+                                    </div>
+EOD;
+
+                                    echo $chuoi;
+                               
+                            }
+                           
+                        }
+                        catch(PDOException $e){
+                            echo "There is some problem in connection: " . $e->getMessage();
+                        }
+
+                        $pdo->close();
+?>
                     </div>
                 </div>
                 
@@ -290,7 +258,7 @@
     </div>
 
 
- <div class="footer-top-area">
+    <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -311,11 +279,10 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Xem chi tiết: </h2>
                         <ul>
-                            <li><a href="shop.html">Sản phẩm</a></li>
-                            <li><a href="cart.html">Giỏ hàng</a></li>
-                            <li><a href="#">Các sản phẩm bán chạy</a></li>
-                            <li><a href="checkout.html">Thanh toán</a></li>
-                            <li><a href="index.html">Trang chủ</a></li>
+                            <li><a href="shop.php">Sản phẩm</a></li>
+                            <li><a href="cart_view.php">Giỏ hàng</a></li>
+                            <li><a href="checkout.php">Thanh toán</a></li>
+                            <li><a href="index.php">Trang chủ</a></li>
                         </ul>                       
                     </div>
                 </div>
@@ -328,19 +295,6 @@
                             <li><a href="shop.html?category=Earbuds">Earbuds</a></li>   
                             <li><a href="shop.html?category=Tai nghe bluetooth">Tai nghe bluetooth</a></li>                      
                         </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Khách hàng thân thiết</h2>
-                        <p>Đăng kí thành viên và những ưu đãi hấp dẫn sẽ được gửi đến mail của bạn</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Nhập email">
-                                <input type="submit" value="Đăng kí">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

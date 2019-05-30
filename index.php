@@ -2,8 +2,31 @@
 <?php include 'includes/header.php'; ?>
  <body>
     <?php include 'includes/navbar.php'; ?>
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.php">Trang chủ</a></li>
+                        <li><a href="shop.php">Các sản phẩm</a></li>
+                        <li><a href="cart_view.php">Giỏ hàng</a></li>
+                        <li><a href="checkout.php">Thanh toán</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>  
+            </div>
+        </div>
+    </div>
+<!-- End mainmenu area -->
 
-    
     <div class="slider-area">
         	<!-- Slider -->
 			<div class="block-slider block-slider4">
@@ -253,7 +276,7 @@ EOD;
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Đã xem gần đây</h2>                        
+                        <h2 class="product-wid-title">Giá ưu đãi</h2>                        
                     <?php
                         $month = date('m');
                         $conn = $pdo->open();
@@ -322,11 +345,10 @@ EOD;
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Xem chi tiết: </h2>
                         <ul>
-                            <li><a href="shop.html">Sản phẩm</a></li>
-                            <li><a href="cart.html">Giỏ hàng</a></li>
-                            <li><a href="#">Các sản phẩm bán chạy</a></li>
-                            <li><a href="checkout.html">Thanh toán</a></li>
-                            <li><a href="index.html">Trang chủ</a></li>
+                            <li><a href="shop.php">Sản phẩm</a></li>
+                            <li><a href="cart_view.php">Giỏ hàng</a></li>
+                            <li><a href="checkout.php">Thanh toán</a></li>
+                            <li><a href="index.php">Trang chủ</a></li>
                         </ul>                       
                     </div>
                 </div>
@@ -339,19 +361,6 @@ EOD;
                             <li><a href="shop.html?category=Earbuds">Earbuds</a></li>   
                             <li><a href="shop.html?category=Tai nghe bluetooth">Tai nghe bluetooth</a></li>                      
                         </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Khách hàng thân thiết</h2>
-                        <p>Đăng kí thành viên và những ưu đãi hấp dẫn sẽ được gửi đến mail của bạn</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Nhập email">
-                                <input type="submit" value="Đăng kí">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
