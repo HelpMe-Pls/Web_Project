@@ -7,6 +7,10 @@
                             <li><a href="cart_view.php"><i class="fa fa-user"></i>Giỏ hàng</a></li>
                             <li><a href="checkout.php"><i class="fa fa-user"></i> Thanh toán</a></li>
                             <li><a href="login.php"><i class="fa fa-user"></i> Đăng nhập</a></li>
+                            <?php 
+                                if(isset($_SESSION['user']))
+                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i>Cá nhân</a></li>'
+                             ?>
                         </ul>
                     </div>
                 </div>

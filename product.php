@@ -197,6 +197,7 @@
                                                                 <input type="hidden" name="product" value="$slug">
                                                                 <p><label for="review">Ý kiến đóng góp</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
                                                                 <p><input type="submit" value="Gửi"></p>
+                                                               
                                                             </form>
                                                             EOD;
                                                         echo $chuoi;

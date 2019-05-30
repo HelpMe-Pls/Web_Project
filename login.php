@@ -1,17 +1,19 @@
 <?php include 'includes/session.php'; ?>
 <?php
-  if(isset($_GET['href'])) {
-    $_SESSION['href'] = 'product.php?product='.$_GET['product'];     
-  }
 
-  if(isset($_SESSION['user'])){
-    if (isset($_SESSION['href'])){
-      $href =$_SESSION['href'];
-      header("location: $href");
+   if(isset($_GET['href'])) {
+      $_SESSION['href'] = 'product.php?product='.$_GET['product'];     
     }
-    else header("location: cart_view.php");
-}
-?>
+
+    if(isset($_SESSION['user'])){
+      if (isset($_SESSION['href'])){
+        $href =$_SESSION['href'];
+     header("location: $href");
+      }else header("location: cart_view.php");
+
+      
+  }?>
+
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition login-page">
 <div class="login-box">
