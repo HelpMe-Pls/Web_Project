@@ -104,53 +104,7 @@ EOD;
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <div class="woocommerce-info">Phản hồi khách hàng <a class="showlogin" data-toggle="collapse" href="#login-form-wrap" aria-expanded="false" aria-controls="login-form-wrap">Nhấn để đăng nhập</a>
-                            </div>
-
-                            <form id="login-form-wrap" class="login collapse" method="post">
-
-
-                                <p>Nếu bạn đã mua sắm với chúng tôi trước đây, vui lòng nhập thông tin của bạn vào các ô bên dưới. Nếu bạn là khách hàng mới, vui lòng tiếp tục với phần Thanh toán & Giao hàng.</p>
-
-                                <p class="form-row form-row-first">
-                                    <label for="username">Tên đăng nhập hoặc email<span class="required">*</span>
-                                    </label>
-                                    <input type="text" id="username" name="username" class="input-text">
-                                </p>
-                                <p class="form-row form-row-last">
-                                    <label for="password">Mật khẩu <span class="required">*</span>
-                                    </label>
-                                    <input type="password" id="password" name="password" class="input-text">
-                                </p>
-                                <div class="clear"></div>
-
-
-                                <p class="form-row">
-                                    <input type="submit" value="Login" name="login" class="button">
-                                    <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Nhớ </label>
-                                </p>
-                                <p class="lost_password">
-                                    <a href="#">Quên mật khẩu</a>
-                                </p>
-
-                                <div class="clear"></div>
-                            </form>
-
-                            <div class="woocommerce-info">Mã giảm giá <a class="showcoupon" data-toggle="collapse" href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Nhập mã giảm giá</a>
-                            </div>
-
-                            <form id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
-
-                                <p class="form-row form-row-first">
-                                    <input type="text" value="" id="coupon_code" placeholder="Mã giảm giá" class="input-text" name="coupon_code">
-                                </p>
-
-                                <p class="form-row form-row-last">
-                                    <input type="submit" value="Áp dụng" name="apply_coupon" class="button">
-                                </p>
-
-                                <div class="clear"></div>
-                            </form>
+                           
 
                             <?php	        		
 
@@ -169,6 +123,12 @@ EOD;
 						$pdo->close();	
 						$id = 'PAY-'.strtoupper(md5(time()));	             
 			              
+                          $check = '';
+
+                          if($mm == 0){
+                            $check = 'Giỏ hàng trống vui lòng mua hàng để thanh toán';
+                          }else $check =  '<input type="submit" data-value="Place order" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" id="chay" class="button checkoutt alt">';
+
 						$chuoi ='
 <form  action="./sales.php" class="checkout" name="checkout">
 
@@ -219,21 +179,12 @@ EOD;
                                         </div>
                                     </div>
 
-                                    
-
                                     </div>
 
                                 </div>
                                 <div id="order_review" style="position: relative;">
-
                                     <div id="payment">
-                                       
-                                        <div class="form-row place-order">
-
-                                            <input type="submit" data-value="Place order" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" id="chay" class="button checkoutt alt">
-
-                                        </div>
-
+                                        <div class="form-row place-order">'.$check.'</div>
                                         <div class="clear"></div>
 
                                     </div>
