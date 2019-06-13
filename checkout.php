@@ -115,21 +115,19 @@ EOD;
 						$stmt->execute(['user_id'=>$user['id']]);
 
 						$total = 0;
-
 						foreach($stmt as $row){
 							$subtotal = $row['price'] * $row['quantity'];
-                            
 							$total += $subtotal;
 						}
 						$mm=json_encode($total);
 						$pdo->close();	
-						$id = 'PAY-'.strtoupper(md5(time()));	    
-                          
+						$id = 'PAY-'.strtoupper(md5(time()));	             
+			              
+                          $check = '';
+
                           if($mm == 0){
                             $check = 'Giỏ hàng trống vui lòng mua hàng để thanh toán';
-                          }else if()
-
-                          $check =  '<input type="submit" data-value="Place order" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" id="chay" class="button checkoutt alt">';
+                          }else $check =  '<input type="submit" data-value="Place order" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" id="chay" class="button checkoutt alt">';
 
 						$chuoi ='
 <form  action="./sales.php" class="checkout" name="checkout">
@@ -140,23 +138,23 @@ EOD;
                                             <h3>Chi tiết thanh toán</h3>
                                            
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">Họ tên <abbr title="required" class="required">*</abbr>
+                                                <label class="" for="billing_first_name">Họ <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="'.$user['firstname'].' '.$user['lastname'].'" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text " disabled>
+                                                <input type="text" value="'.$user['firstname'].' '.$user['lastname'].'" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
                                             </p>
 
                                             <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address_1">Địa chỉ <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 
-                                                <input type="text" value="'.$user['address'].'" placeholder="Địa chỉ" id="billing_address_1" name="billing_address_1" class="input-text " >
+                                                <input type="text" value="" placeholder="Số nhà" id="billing_address_1" name="billing_address_1" class="input-text ">
                                             </p>
 
                                             
                                             <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
                                                 <label class="" for="billing_email">Địa chỉ email <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="'.$user['email'].'" placeholder="" id="billing_email" name="billing_email" class="input-text " disabled>
+                                                <input type="text" value="'.$user['email'].'" placeholder="" id="billing_email" name="billing_email" class="input-text ">
                                             </p>
 
 
@@ -164,7 +162,7 @@ EOD;
                                             <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                                 <label class="" for="billing_phone">Số điện thoại <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="'.$user['contact_info'].'" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
                                             </p>
 
                                             <p id="billing_money" class="form-row form-row-first validate-required validate-email">
@@ -274,7 +272,7 @@ EOD;
             </div>
         </div>
     </div> <!-- End footer bottom area -->
-   <?php include 'includes/scripts.php'; ?>
+   
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     

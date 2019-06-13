@@ -26,7 +26,7 @@
 					<p>Tài khoản:</p>
 					<p>Email: ".$email."</p>
 					<p>Vui lòng click vào link để khôi phục mật khẩu.</p>
-					<a href='http://localhost:8080/ecomm/password_reset.php?code=".$code."&user=".$row['id']."'>Khôi phục mật khẩu</a>
+					<a href='http://localhost/Test/password_reset.php?code=".$code."&user=".$row['id']."'>Khôi phục mật khẩu</a>
 				";
 
 				//Load phpmailer
