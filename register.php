@@ -5,13 +5,14 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['signup'])){
+		//dữ liệu user nhập vào
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$repassword = $_POST['repassword'];
 
-		$_SESSION['firstname'] = $firstname;
+		$_SESSION['firstname'] = $firstname;	//gán cho session tương ứng
 		$_SESSION['lastname'] = $lastname;
 		$_SESSION['email'] = $email;
 
@@ -73,20 +74,21 @@
 		    		$mail = new PHPMailer(true);                             
 				    try {
 				        //Server settings
-				        $mail->isSMTP();                                     
+						$mail->isSMTP();            
+						$mail->SMTPDebug = 2;                         
 				        $mail->Host = 'smtp.gmail.com';                      
 				        $mail->SMTPAuth = true;                               
 				        $mail->Username = 'kerikuni12@gmail.com';     
 				        $mail->Password = 'kuyeuco1';                    
 				        $mail->SMTPOptions = array(
 				            'ssl' => array(
-				            'verify_peer' => false,
-				            'verify_peer_name' => false,
-				            'allow_self_signed' => true
+				            	'verify_peer' => false,
+				            	'verify_peer_name' => false,
+				            	'allow_self_signed' => true
 				            )
 				        );                         
-				        $mail->SMTPSecure = 'ssl';                           
-				        $mail->Port = 465;                                   
+				        $mail->SMTPSecure = 'ssl';     //tls                      
+				        $mail->Port = 465; 	//587                                 
 
 				        $mail->setFrom('kerikuni12@gmail.com');
 				        
