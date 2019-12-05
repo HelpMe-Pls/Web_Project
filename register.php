@@ -65,7 +65,7 @@
 						<p>Email: ".$email."</p>
 						<p>Mật khẩu: ".$_POST['password']."</p>
 						<p>Click vào link để kích hoạt.</p>
-						<a href='http://localhost:8080/ecomm/activate.php?code=".$code."&user=".$userid."'>Kích hoạt tài khoản</a>
+						<a href='http://localhost/Test/activate.php?code=".$code."&user=".$userid."'>Kích hoạt tài khoản</a>
 					";
 
 					//Load phpmailer

@@ -27,12 +27,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <?php echo $user['firstname'].' '.$user['lastname'].'`s Cart' ?>
+        <?php echo $user['firstname'].' '.$user['lastname'].'`s ' ?>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Users</li>
-        <li class="active">Cart</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li>Người dùng</li>
+        <li class="active">Giỏ hàng</li>
       </ol>
     </section>
 
@@ -64,15 +64,15 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" id="add" data-id="<?php echo $user['id']; ?>" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
-              <a href="users.php" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-arrow-left"></i> Users</a>
+              <a href="#addnew" data-toggle="modal" id="add" data-id="<?php echo $user['id']; ?>" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Mới</a>
+              <a href="users.php" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-arrow-left"></i> Người dùng</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Product Name</th>
-                  <th>Quantity</th>
-                  <th>Tools</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Công cụ</th>
                 </thead>
                 <tbody>
                   <?php

@@ -54,7 +54,7 @@
       		</div>
     	</form>
       <br>
-      <a href="password_forgot.php">Quên mật khẩu</a><br>
+      
       <a href="signup.php" class="text-center">Đăng ký</a><br>
       <a href="index.php"><i class="fa fa-home"></i> Trang chủ</a>
   	</div>

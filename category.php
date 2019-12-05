@@ -22,7 +22,29 @@
 <div class="wrapper">
 
 	<?php include 'includes/navbar.php'; ?>
-	 
+	<div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.php">Trang chủ</a></li>
+                        <li class="active"><a href="shop.php">Các sản phẩm</a></li>
+                        <li><a href="cart_view.php">Giỏ hàng</a></li>
+                        <li><a href="checkout.php">Thanh toán</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>  
+            </div>
+        </div>
+    </div>
 	  <div class="content-wrapper">
 	    <div class="container">
 
